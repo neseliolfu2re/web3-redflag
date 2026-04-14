@@ -41,6 +41,7 @@ import {
   vcInsiderSupply,
   vibeCheckQuotes,
   walletTreasury,
+  washTradingVolume,
   whitepaperVague,
 } from './redFlagLexicon'
 
@@ -465,6 +466,14 @@ const RULES: Rule[] = [
     detail: 'Astroturfing and duplicate accounts inflate social proof.',
     weight: 11,
     test: ({ folded: f }) => matchesAny(f, fakeEngagement),
+  },
+  {
+    id: 'user-wash-trading-volume',
+    title: 'Wash trading / fake volume',
+    detail:
+      'Claims of wash trading or inflated volume can mean metrics are being gamed — verify on-chain and across venues.',
+    weight: 10,
+    test: ({ folded: f }) => matchesAny(f, washTradingVolume),
   },
   {
     id: 'user-founder-avoid-drama',

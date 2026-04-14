@@ -318,6 +318,18 @@ export const fakeEngagement: RegExp[] = [
   /\bbot farm/i,
 ]
 
+/** Wash trading / fake volume */
+export const washTradingVolume: RegExp[] = [
+  /\bwash trading\b/i,
+  /\bwash[- ]traded\b/i,
+  /\bfake volume\b/i,
+  /\binflated volume\b/i,
+  /\bmanufactured volume\b/i,
+  /\bspoof(ed|ing)? volume\b/i,
+  /\bvolume is fake\b/i,
+  /\bwash volume\b/i,
+]
+
 /** Founder behavior */
 export const founderBehavior: RegExp[] = [
   /\bfounder\b.*\b(avoid|dodge|ignore|silent)\b/i,
