@@ -1,4 +1,5 @@
 import { useMemo, useRef, useState } from 'react'
+import { track } from '@vercel/analytics'
 import { buildTextExport, downloadResultPng } from './lib/exportReport'
 import { scanWeb3RedFlags, type ScanResult } from './lib/web3RedFlags'
 
@@ -54,7 +55,14 @@ export default function App() {
     setPending(true)
     setExportMsg(null)
     window.setTimeout(() => {
-      setResult(scanWeb3RedFlags(input))
+      const next = scanWeb3RedFlags(input)
+      setResult(next)
+      track('scan', {
+        severity: next.severity,
+        hits: next.hits.length,
+        score: next.score,
+        embed,
+      })
       setPending(false)
     }, 420)
   }
